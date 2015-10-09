@@ -28,6 +28,7 @@ HashTable.prototype.insert = function(k, v) {
   }
 };
 
+// O(1)
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var currentBucket = this._storage[index] 
@@ -39,6 +40,7 @@ HashTable.prototype.retrieve = function(k) {
   return undefined;
 };
 
+// O(1)
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var currentBucket = this._storage[index];
