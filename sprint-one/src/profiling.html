@@ -1,0 +1,53 @@
+<html>
+  <head>
+  <script src="underscore.js"></script>
+<!--   
+  <script src="./functional/queue.js"></script>
+  <script src="./functional/stack.js"></script>
+ -->
+
+ <!-- 
+  <script src="./functional-shared/stack.js"></script>
+  <script src="./functional-shared/queue.js"></script>
+
+   -->
+<!-- 
+  <script src="./prototypal/stack.js"></script>
+  <script src="./prototypal/queue.js"></script>
+  
+ -->  <!-- 
+  <script src="./pseudoclassical/stack.js"></script>
+  <script src="./pseudoclassical/queue.js"></script>
+   -->
+  <script>
+  // console.log('running');
+    var queues = [];
+    var stacks = [];
+    var makeStuff = function() {  
+      for (var i=0; i < 10000; i++) {
+        queues.push(new Queue());
+        stacks.push(new Stack());
+      }
+    }
+    var wasteTime = function() {
+      for (var i=0; i<queues.length; i++) {
+        for (var j=0; j<1000; j++) {
+          queues[i].enqueue(i+j);
+          if (i+j % 2 === 0) {
+            queues[i].dequeue();
+            queues[i].size();
+          }  
+        }
+        
+
+      }
+    }
+    makeStuff();
+    wasteTime();
+
+  </script>
+  </head>
+
+</html>
+
+<!-- It appears that functional-shared takes the longest to instantiate, followed by functional, then prototypal and finally pseudoclassical.  This order was a bit counter intuitive because one would think that functional shared may be faster than functional.  In terms of calling methods on the queue instances, functional took the longest and the other three instantian patterns were similar in time, with pseudoclassical having the overall fastest run times.  -->
